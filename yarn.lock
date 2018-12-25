@@ -690,13 +690,6 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.10.tgz#4897974cc317bf99d4fe6af1efa15957fa9c94de"
   integrity sha512-DC8xTuW/6TYgvEg3HEXS7cu9OijFqprVDXXiOcdOKZCU/5PJNLZU37VVvmZHdtMiGOa8wAA/We+JzbdxFzQTRQ==
 
-"@types/lodash.range@^3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@types/lodash.range/-/lodash.range-3.2.4.tgz#9cb9d304db6eda3bb71b577e9b6a85983821514b"
-  integrity sha512-xMaDQZdQsJcNLjMAfPVT7c4wEfuTINAKNi9DuBhd5r0nEFPFsAIml4meA97yNTk9mpEc0n7kwhcevFZ4HNCyLQ==
-  dependencies:
-    "@types/lodash" "*"
-
 "@types/lodash.zipobject@^4.1.4":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@types/lodash.zipobject/-/lodash.zipobject-4.1.4.tgz#ab8db347e4ae0991e92ca7e207314d9283fc9f93"
@@ -4324,11 +4317,6 @@ lodash.pick@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
   integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
-
-lodash.range@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.range/-/lodash.range-3.2.0.tgz#f461e588f66683f7eadeade513e38a69a565a15d"
-  integrity sha1-9GHliPZmg/fq3q3lE+OKaaVloV0=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"

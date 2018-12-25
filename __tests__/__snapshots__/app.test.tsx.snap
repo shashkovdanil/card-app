@@ -13,9 +13,82 @@ exports[`App snapshot test 1`] = `
     style={
       Object {
         "flex": 1,
+        "marginHorizontal": 12,
       }
     }
   >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#240b36",
+          "borderRadius": 10,
+          "height": 300,
+          "opacity": 0.25,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateY": 20,
+            },
+            Object {
+              "scale": 0.7749999999999999,
+            },
+          ],
+          "width": "100%",
+          "zIndex": 1,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "#00b4db",
+          "borderRadius": 10,
+          "height": 300,
+          "opacity": 0.5,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateY": 40,
+            },
+            Object {
+              "scale": 0.85,
+            },
+          ],
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "#800080",
+          "borderRadius": 10,
+          "height": 300,
+          "opacity": 0.75,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateY": 60,
+            },
+            Object {
+              "scale": 0.925,
+            },
+          ],
+          "width": "100%",
+          "zIndex": 3,
+        }
+      }
+    />
     <View
       onMoveShouldSetResponder={[Function]}
       onMoveShouldSetResponderCapture={[Function]}
@@ -31,38 +104,27 @@ exports[`App snapshot test 1`] = `
       onStartShouldSetResponderCapture={[Function]}
       style={
         Object {
-          "height": 1214,
-          "padding": 10,
+          "backgroundColor": "#ff0099",
+          "borderRadius": 10,
+          "height": 300,
+          "opacity": 1,
           "position": "absolute",
           "transform": Array [
-            Object {
-              "rotate": "0deg",
-            },
             Object {
               "translateX": 0,
             },
             Object {
-              "translateY": 0,
+              "translateY": 80,
+            },
+            Object {
+              "scale": 1,
             },
           ],
-          "width": 750,
+          "width": "100%",
+          "zIndex": 4,
         }
       }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "borderRadius": 10,
-              "flex": 1,
-            },
-            Object {
-              "backgroundColor": "#fdc830",
-            },
-          ]
-        }
-      />
-    </View>
+    />
   </View>
 </RCTSafeAreaView>
 `;

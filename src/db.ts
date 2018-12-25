@@ -1,11 +1,11 @@
 export default [
   {
     id: 0,
-    color: '#fdc830',
+    color: '#ff0099',
   },
   {
     id: 1,
-    color: '#f37335',
+    color: '#800080',
   },
   {
     id: 2,
@@ -13,6 +13,6 @@ export default [
   },
   {
     id: 3,
-    color: '#ffefba',
+    color: '#240b36',
   },
 ]

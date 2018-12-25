@@ -27,133 +27,83 @@ class App extends React.Component<{}, IState> {
       this.state.pan.setValue({ x: gestureState.dx, y: 0 })
     },
     onPanResponderTerminationRequest: () => false,
-    onPanResponderRelease: (event, gestureState) => {
-      Animated.timing(this.state.pan, {
+    onPanResponderRelease: () => {
+      const { pan, animatedValue, currentIndex } = this.state
+      Animated.timing(pan, {
         toValue: 0,
         duration: 300,
+        useNativeDriver: true,
       }).start()
-      Animated.timing(this.state.animatedValue, {
+      Animated.timing(animatedValue, {
         toValue: 1,
         duration: 300,
+        useNativeDriver: true,
       }).start(() => {
-        this.state.animatedValue.setValue(0)
+        animatedValue.setValue(0)
         this.setState({
-          currentIndex: this.state.currentIndex + 1,
+          currentIndex: currentIndex + 1,
         })
       })
     },
   })
 
-  renderFirstCard = () => {
-    const { animatedValue, currentIndex } = this.state
-    return (
-      <Animated.View
-        style={{
-          width: '100%',
-          height: 150,
-          position: 'absolute',
-          backgroundColor: data[(currentIndex + 2) % 3].color,
-          zIndex: 1,
-          bottom: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [40, 20],
-          }),
-          transform: [
-            {
-              scale: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.8, 0.9],
-              }),
-            },
-          ],
-          opacity: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.3, 0.6],
-          }),
-        }}
-      />
-    )
-  }
-
-  renderLastCard = () => {
-    const { animatedValue, currentIndex, pan } = this.state
-    return (
-      <Animated.View
-        {...this.panResponder.panHandlers}
-        style={{
-          width: '100%',
-          height: 150,
-          position: 'absolute',
-          backgroundColor: data[currentIndex % 3].color,
-          zIndex: animatedValue.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [3, 2, 0],
-          }),
-          bottom: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 40],
-          }),
-          opacity: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0.3],
-          }),
-          transform: [
-            { translateX: pan.x },
-            {
-              scale: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [1, 0.8],
-              }),
-            },
-          ],
-        }}
-      />
-    )
-  }
-
-  renderCard = () => {
-    const { animatedValue, currentIndex } = this.state
-    return (
-      <Animated.View
-        style={{
-          width: '100%',
-          height: 150,
-          position: 'absolute',
-          backgroundColor: data[(currentIndex + 1) % 3].color,
-          zIndex: 2,
-          bottom: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [20, 0],
-          }),
-          transform: [
-            {
-              scale: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.9, 1.0],
-              }),
-            },
-          ],
-          opacity: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.6, 1],
-          }),
-        }}
-      />
-    )
-  }
-
   render() {
+    const { animatedValue, currentIndex, pan } = this.state
     return (
       <SafeAreaView style={styles.area}>
         <View style={styles.cardWrapper}>
           {data.map((card, index, array) => {
-            if (index === 0) {
-              return this.renderFirstCard()
+            const count = array.length
+            const isLast = index === count - 1
+            const panHandlers = isLast ? this.panResponder.panHandlers : {}
+            const getTranslateYOutputRange = () => {
+              const start = (index + 1) * 20
+              const end = isLast ? 20 : start + 20
+              return [start, end]
             }
-            if (index === array.length - 1) {
-              return this.renderLastCard()
+            const getOpacityOutputRange = () => {
+              const start = (index + 1) / count
+              const end = start === 1 ? 1 / count : (index + 2) / count
+              return [start, end]
             }
-            return this.renderCard()
+            const getScaleOutputRange = () => {
+              const del = (1 - 0.7) / count
+              const start = 0.7 + (del * (index + 1))
+              const end = isLast ? 0.7 + (del * (0 + 1)) : start + del
+              return [start, end]
+            }
+            return (
+              <Animated.View
+                {...panHandlers}
+                key={card.id}
+                style={[
+                  styles.card,
+                  {
+                    backgroundColor: data[(currentIndex + (count - 1 - index)) % count].color,
+                    zIndex: index + 1,
+                    transform: [
+                      { translateX: isLast ? pan.x : 0 },
+                      {
+                        translateY: animatedValue.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: getTranslateYOutputRange(),
+                        }),
+                      },
+                      {
+                        scale: animatedValue.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: getScaleOutputRange(),
+                        }),
+                      },
+                    ],
+                    opacity: animatedValue.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: getOpacityOutputRange(),
+                    }),
+                  },
+                ]}
+              />
+            )
           })}
         </View>
       </SafeAreaView>

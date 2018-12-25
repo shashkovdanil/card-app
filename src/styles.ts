@@ -9,9 +9,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 12,
   },
-  cardContent: {
-    flex: 1,
+  card: {
+    width: '100%',
+    height: 300,
     borderRadius: 10,
+    position: 'absolute',
   },
 })
 
